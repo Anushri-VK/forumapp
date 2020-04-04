@@ -1,0 +1,37 @@
+{% extends 'base1.html' %}
+{% block body %}
+<div class="container">
+	<div class="row">
+		<div class="col-md-2"></div>
+		<div class="col-md-8">
+		<div class="sub-head mt-4 mb-2">
+			<h4>Post Answers</h4>
+		</div><br>
+		<form action="/discussion/{{question.id}}/" method="POST">
+			{% csrf_token %}
+			<div class="form-group">
+				<label>{{questions.question}}</label>
+				<textarea class="form-control" name="answer" placeholder="Answer the question"></textarea>
+			</div>
+			<button type="submit" class="btn btn-primary">Answer</button>
+		</form>
+		<br>
+		<br>
+		<div class="sub-head mt-4 mb-2">
+			<h4>Anwer to the question</h4>
+		</div><br>
+		{% for answers in all_answers %}
+		<div class="card" style="width: 100%;margin-bottom: 10px;">
+				<div class="card-body">
+					<h6 class="card-title">{{answers.answer}}</h6>
+					<p class="card-text">Answered by:{{answers.author}} | {{answers.timestamp}} | Upvotes: {{answers.upvotes}}</p>
+					<a href="/upvote/{{answers.id}}" class="btn btn-primary" style="float: right;">Upvote</a>
+				</div>
+			</div><br>
+			{% endfor %}
+		</div>
+		<div class="col-md-2"></div>
+	</div>
+</div>
+{% endblock %}
+

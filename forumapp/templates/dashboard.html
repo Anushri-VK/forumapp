@@ -1,0 +1,38 @@
+{% extends 'base1.html' %}
+{% block body %}
+<div class="container">
+	<div class="row">
+		<div class="col-md-2"></div>
+		<div class="col-md-8">
+			<div class="sub-head mt-4 mb-2">
+				<h5 style="display: inline;"><b>All Questions</b></h5>
+				{% for questions in all_questions %}
+				<div class="card" style="width: 50rem;margin-bottom: 10px;">
+				<div class="card-body">
+					<h6 class="card-title">{{questions.question}}</h6>
+					<p class="card-text">Asked by:{{questions.author}} | {{questions.timestamp}}</p>
+					<a href="/discussion/{{questions.id}}/" class="btn btn-primary" style="float: right;">Answer</a>
+				</div>
+			</div>
+			{% endfor %}
+		</div>
+		<br>
+		<br>
+		<div class="col-md-6">
+			<div class="sub-head">
+			<h5 style="display: inline;"><b>All Answers</b></h5>
+		</div>
+		{% for answers in all_answers %}
+		<div class="card" style="width: 50rem;margin-bottom: 10px;">
+			<div class="card-body">
+				<h6 class="card-title">{{answers.answer}}</h6>
+				<p class="card-text">Answered by:{{answers.author}} |  {{answers.timestamp}} | Upvotes:{{answers.upvotes}}</p>
+				<a href="/upvote/{{answers.id}}/"class="btn btn-primary" style="float: right;">Upvote</a>
+			</div>
+			</div>
+			{% endfor %}
+		</div>
+	</div>
+</div>
+</div>
+{% endblock %}
